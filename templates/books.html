@@ -10,7 +10,7 @@
         {% for book in books %}
         <li>
             <img src="{{ book.image.url }}" alt="">
-            <h2>{{ book.title }}</h2>
+            <h2><a href="/books/{{ book.id }}/">{{ book.title }}</a></h2>
             <p>{{ book.description }}</p>
             <p>{{ book.genre }}</p>
             <p>{{ book.quantity_of_page }}</p>
