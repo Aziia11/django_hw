@@ -1,25 +1,54 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Books</title>
+    <link rel="stylesheet" href="{% static '/css/bootstrap.css/' %}">
 </head>
 <body>
-<div>
-    <ul>
+<style>
+    body {
+        background: #34e89e;
+        background: -webkit-linear-gradient(to right, #0f3443, #34e89e);
+        background: linear-gradient(to right, #0f3443, #34e89e);
+
+    }
+
+    .book__img {
+        height: 300px;
+        object-fit: contain;
+    }
+
+    .books__container {
+        height: 100px;
+        margin-top: 40px;
+    }
+</style>
+
+
+<div class="container books__container">
+    <div class="row gy-5">
         {% for book in books %}
-        <li>
-            <img src="{{ book.image.url }}" alt="">
-            <h2><a href="/books/{{ book.id }}/">{{ book.title }}</a></h2>
-            <p>{{ book.description }}</p>
-            <p>{{ book.genre }}</p>
-            <p>{{ book.quantity_of_page }}</p>
-            <p>{{ book.created_date }}</p>
-            <p>{{ book.updated_date}}</p>
-            <p>{{ book.author }}</p>
-        </li>
+        <div class="col-4">
+            <div class="card">
+                <img src="{{ book.image.url }}" class="card-img-top book__img" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text">{{ book.genre }}</p>
+                    <a href="/books/{{ book.id }}/" class="btn btn-success">Go {{book.title}}</a>
+                </div>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
 </div>
-</body>
-</html>
