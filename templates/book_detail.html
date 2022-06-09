@@ -27,21 +27,32 @@
 <div class="container">
     <a href="/books/" class="btn btn-success books__button">Back</a>
     <a href="/add-book/" class="btn btn-success books__button">Create New Masterpiece</a>
-    <a href="/books/{{ book.id }}/update/" class="btn btn-success books__button">Change</a>
-    <a href="/books/{{ book.id }}/delete/" class="btn btn-success books__button">Delete</a>
+    <a href="/books/{{ object.id }}/update/" class="btn btn-success books__button">Change</a>
+    <a href="/books/{{ object.id }}/delete/" class="btn btn-success books__button">Delete</a>
 
 </div>
 <div class="container">
     <div class="card">
-    <img src="{{ book.image.url }}" class="card-img-top detail__image" alt="...">
+    <img src="{object.image.url }}" class="card-img-top detail__image" alt="...">
         <div class="card-body">
-            <h5 class="card-title">{{ book.title}}</h5>
-            <p class="card-text">{{ book.description}}</p>
-            <p class="card-text">{{ book.genre}}</p>
-            <p class="card-text">{{ book.quantity_of_page}}</p>
-            <p class="card-text">{{ book.author}}</p>
-            <p class="card-text">{{ book.created_date}}</p>
-            <p class="card-text">{{ book.updated_date}}</p>
+            <h5 class="card-title">{{ object.title}}</h5>
+            <p class="card-text">{{ object.description}}</p>
+            <p class="card-text">{{ object.genre}}</p>
+            <p class="card-text">{{ object.quantity_of_page}}</p>
+            <p class="card-text">{{ object.author}}</p>
+            <p class="card-text">{{ object.created_date}}</p>
+            <p class="card-text">{{ object.updated_date}}</p>
+            <div class="card-body">
+                <h2>Comments: </h2>
+                <ul>
+                    {% for comment in object.books_comment.all %}
+                    <li>
+                        <p>Username: {{ comment.user.username }}</p>
+                        <p>Text: {{ comment.text }}</p>
+                    </li>
+                    {% endfor %}}
+                </ul>
+            </div>
         </div>
     </div>
 </div>

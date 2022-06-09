@@ -26,3 +26,25 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+class BookUser(models.Model):
+    username = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.username
+
+class BookComment(models.Model):
+    books = models.ForeignKey(Book,
+                              on_delete=models.CASCADE,
+                              related_name="books_comment")
+    user = models.ForeignKey(BookUser,
+                             on_delete=models.CASCADE,
+                             related_name="books_user",
+                             null=True)
+    text = models.TextField()
+    created_date = models.DateField(auto_now_add=True)
+    updated_date = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.books.title
+
